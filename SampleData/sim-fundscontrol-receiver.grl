@@ -1,0 +1,8 @@
+rule FundsControlSimulator "FundsControl Simulator Ruleset" salience 10 {
+    when
+        Payment.Status == "FundsControlRequestInitiated"
+    then
+        Payment.Status = "FundsControlRequestInitiated";
+        Payment.CreateAuditLog("FundsControlSimulator");
+        Retract("FundsControlSimulator");
+}

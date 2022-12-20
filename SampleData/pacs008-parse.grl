@@ -1,0 +1,7 @@
+rule Pacs008Parse "Parse Pacs.008 Message Ruleset" salience 10 {
+    when
+        Payment.Status == "Pacs.008Identified"
+    then
+        Payment.Status = "Pacs.008Parsed";
+        Payment.CreateAuditLog("Pacs008Parse");
+}

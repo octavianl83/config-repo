@@ -1,0 +1,8 @@
+rule RTPAccountPostingSimulator "RTPAccountPosting Simulator Ruleset" salience 10 {
+    when
+        Payment.Status == "RTPAccountPostingRequestInitiated"
+    then
+        Payment.Status = "RTPAccountPostingRequestInitiated";
+        Payment.CreateAuditLog("RTPAccountPostingSimulator");
+        Retract("RTPAccountPostingSimulator");
+}

@@ -1,0 +1,7 @@
+rule InstructionIDGeneration "Instruction ID Generation Ruleset" salience 10 {
+    when
+        Payment.Status == "InstructionDupChecked"
+    then
+        Payment.Status = "TransactionIDGenerated";
+        Payment.CreateAuditLog("InstructionIDGeneration");
+}

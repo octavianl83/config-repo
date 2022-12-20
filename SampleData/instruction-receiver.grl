@@ -1,0 +1,8 @@
+rule InstructionReceiver "Instruction Receiver Ruleset" salience 10 {
+    when
+        Payment.Status == "Initiated"
+    then
+        Payment.Status = "InstructionReceived";
+        Payment.GenerateID();
+        Payment.CreateAuditLog("InstructionReceiver");
+}

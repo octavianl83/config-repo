@@ -1,0 +1,7 @@
+rule Pacs008Validate "Validate Pacs.008 Message Ruleset" salience 10 {
+    when
+        Payment.Status == "Pacs.008Parsed"
+    then
+        Payment.Status = "TransactionValidated";
+        Payment.CreateAuditLog("Pacs008Validate");
+}

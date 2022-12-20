@@ -1,0 +1,7 @@
+rule AccountLookupRequest "Account Lookup Request Ruleset" salience 10 {
+    when
+        Payment.Status == "SanctionsReceived"
+    then
+        Payment.Status = "AccountLookupRequestInitiated";
+        Payment.CreateAuditLog("AccountLookupRequest");
+}

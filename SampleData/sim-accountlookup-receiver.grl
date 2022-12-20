@@ -1,0 +1,8 @@
+rule AccountLookupSimulator "AccountLookup Simulator Ruleset" salience 10 {
+    when
+        Payment.Status == "AccountLookupRequestInitiated"
+    then
+        Payment.Status = "AccountLookupRequestInitiated";
+        Payment.CreateAuditLog("AccountLookupSimulator");
+        Retract("AccountLookupSimulator");
+}

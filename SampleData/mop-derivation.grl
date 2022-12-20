@@ -1,0 +1,7 @@
+rule MOPDerivation "Method of payment derivation Ruleset" salience 10 {
+    when
+        Payment.Status == "FundsControlReceived"
+    then
+        Payment.Status = "RtpMopIdentified";
+        Payment.CreateAuditLog("MOPDerivation");
+}

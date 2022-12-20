@@ -1,0 +1,7 @@
+rule TransactionDupCheck "Transaction Duplicate Check Ruleset" salience 10 {
+    when
+        Payment.Status == "TransactionValidated"
+    then
+        Payment.Status = "TransactionDupChecked";
+        Payment.CreateAuditLog("TransactionDupCheck");
+}

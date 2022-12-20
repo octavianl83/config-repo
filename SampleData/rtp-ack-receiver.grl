@@ -1,0 +1,7 @@
+rule RTPAckReceiver "RTP ACK Recevier Ruleset" salience 10 {
+    when
+        Payment.Status == "RTPTransmitInitiated"
+    then
+        Payment.Status = "Completed";
+        Payment.CreateAuditLog("RTPAckReceiver");
+}

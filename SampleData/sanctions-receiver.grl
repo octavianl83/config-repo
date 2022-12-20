@@ -1,0 +1,7 @@
+rule SanctionsReceiver "Sanctions Response Receiver Ruleset" salience 10 {
+    when
+        Payment.Status == "SanctionsRequestInitiated"
+    then
+        Payment.Status = "AccountLookupRequestInitiated";
+        Payment.CreateAuditLog("SanctionsReceiver");
+}

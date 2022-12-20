@@ -1,0 +1,7 @@
+rule RTPAccountPostingRequest "RTP Account Posting Request Ruleset" salience 10 {
+    when
+        Payment.Status == "RtpMopIdentified"
+    then
+        Payment.Status = "RTPAccountPostingRequestInitiated";
+        Payment.CreateAuditLog("RTPAccountPostingRequest");
+}

@@ -1,0 +1,7 @@
+rule RTPTransmit "RTP Transmit Ruleset" salience 10 {
+    when
+        Payment.Status == "RtpAccountPostingReceived"
+    then
+        Payment.Status = "RTPTransmitInitiated";
+        Payment.CreateAuditLog("RTPTransmit");
+}

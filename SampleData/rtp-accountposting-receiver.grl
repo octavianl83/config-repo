@@ -1,0 +1,7 @@
+rule RTPAccountPostingReceiver "RTP Account Posting Response Receiver Ruleset" salience 10 {
+    when
+        Payment.Status == "RTPAccountPostingRequestInitiated"
+    then
+        Payment.Status = "RtpAccountPostingReceived";
+        Payment.CreateAuditLog("RTPAccountPostingReceiver");
+}

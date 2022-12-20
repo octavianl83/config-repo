@@ -1,0 +1,7 @@
+rule InstructionValidate "Instruction Validate Ruleset" salience 10 {
+    when
+        Payment.Status == "InstructionParsed"
+    then
+        Payment.Status = "InstructionValidated";
+        Payment.CreateAuditLog("InstructionValidate");
+}

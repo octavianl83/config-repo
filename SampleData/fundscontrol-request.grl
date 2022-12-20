@@ -1,0 +1,7 @@
+rule FundsControlRequest "Funds Control Request Ruleset" salience 10 {
+    when
+        Payment.Status == "AccountLookupReceived"
+    then
+        Payment.Status = "FundsControlRequestInitiated";
+        Payment.CreateAuditLog("FundsControlRequest");
+}

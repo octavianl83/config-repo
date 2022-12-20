@@ -1,0 +1,7 @@
+rule FundsControlReceiver "Funds Control Response Receiver Ruleset" salience 10 {
+    when
+        Payment.Status == "FundsControlRequestInitiated"
+    then
+        Payment.Status = "FundsControlReceived";
+        Payment.CreateAuditLog("FundsControlReceiver");
+}

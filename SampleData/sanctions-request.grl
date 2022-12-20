@@ -1,0 +1,7 @@
+rule SanctionsRequest "Sanctions Request Ruleset" salience 10 {
+    when
+        Payment.Status == "TransactionDupChecked"
+    then
+        Payment.Status = "SanctionsRequestInitiated";
+        Payment.CreateAuditLog("SanctionsRequest");
+}

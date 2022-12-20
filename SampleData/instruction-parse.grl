@@ -1,0 +1,7 @@
+rule InstructionParse "Instruction Parse Ruleset" salience 10 {
+    when
+        Payment.Status == "InstructionReceived"
+    then
+        Payment.Status = "InstructionParsed";
+        Payment.CreateAuditLog("InstructionParse");
+}

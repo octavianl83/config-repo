@@ -1,0 +1,8 @@
+rule SanctionsSimulator "Sanctions Simulator Ruleset" salience 10 {
+    when
+        Payment.Status == "SanctionsRequestInitiated"
+    then
+        Payment.Status = "SanctionsRequestInitiated";
+        Payment.CreateAuditLog("SanctionsSimulator");
+        Retract("SanctionsSimulator");
+}

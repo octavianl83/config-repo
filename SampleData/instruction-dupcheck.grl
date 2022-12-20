@@ -1,0 +1,7 @@
+rule InstructionDupCheck "Instruction Duplicate Check Ruleset" salience 10 {
+    when
+        Payment.Status == "InstructionValidated"
+    then
+        Payment.Status = "InstructionDupChecked";
+        Payment.CreateAuditLog("InstructionDupCheck");
+}

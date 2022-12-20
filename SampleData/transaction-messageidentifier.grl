@@ -1,0 +1,7 @@
+rule InstructionMessageIdentifier "Instruction Message Identifier Ruleset" salience 10 {
+    when
+        Payment.Status == "TransactionIDGenerated"
+    then
+        Payment.Status = "Pacs.008Identified";
+        Payment.CreateAuditLog("InstructionMessageIdentifier");
+}

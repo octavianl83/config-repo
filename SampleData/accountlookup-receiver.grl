@@ -1,0 +1,7 @@
+rule AccountLookupReceiver "Account Lookup Receiver Ruleset" salience 10 {
+    when
+        Payment.Status == "AccountLookupRequestInitiated"
+    then
+        Payment.Status = "AccountLookupReceived";
+        Payment.CreateAuditLog("AccountLookupReceiver");
+}
